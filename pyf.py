@@ -1,7 +1,6 @@
 import math
 import numpy as np
 import sys
-sys.path.append("/Users/ahagen/code")
 from pym import func as ahm
 from pyg import twod as ahp
 
@@ -147,7 +146,11 @@ class fluid(object):
             (B_ant/T_r) + C_ant*np.log(T_r) + D_ant*T_r**6);
         return P_s;
 
-    def rho(self,T,P,omega=None):
+    def rho(self, T=None, P=None, omega=None):
+        if T is None:
+            T = 298.15
+        if P is None:
+            P = 101325.
         if omega is None:
             omega = self.omega_rho;
         # determine the reduced temperature from common definitions
@@ -210,3 +213,7 @@ class fluid(object):
         p2 = self.p(T,rho_2,omega=self.omega_c);
         c = np.sqrt((p1 - p2)/(rho_1 - rho_2));
         return c;
+    def sigma(self, T):
+        return 14.1
+    def c_p(self, T):
+        return 1.13
