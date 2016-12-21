@@ -6,7 +6,10 @@
 .. include:: README.rst
 
 Class Documentation
-===================
+-------------------
+
+pyf.fluid
+~~~~~~~~~
 
 .. autoclass:: pyf.fluid
   :members:
@@ -15,7 +18,7 @@ Class Documentation
 
 
 Indices and tables
-==================
+------------------
 
 Contents:
 
