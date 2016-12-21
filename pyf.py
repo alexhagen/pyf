@@ -170,6 +170,20 @@ class fluid(object):
         return P_s;
 
     def rho(self, T=None, P=None, omega=None):
+        r""" Returns the density of the fluid in :math:`\frac{g}{cm^{3}}`
+
+        The function ``fluid.rho()`` returns the density of the fluid by using
+        the temperature and pressure of the fluid (and possibly the omega) of
+        the fluid and calculating the density according to the tait equation
+
+        .. math::
+
+            - \frac{1}{V} \frac{dV}{dP} = \frac{A}{V \left( B+P \right)}
+
+        :param float T: The temperature in Kelvins (default :math:`298.15 K`)
+        :param float P: The pressure in Pa (default :math:`101325 Pa`)
+        :returns: :math:`\rho`, the density in :math:`\frac{g}{cm^{3}}`
+        """
         if T is None:
             T = 298.15
         if P is None:
