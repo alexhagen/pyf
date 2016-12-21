@@ -6,6 +6,8 @@
 Welcome to pyf's documentation!
 ===============================
 
+.. include:: README.md
+
 .. autoclass:: pyf.fluid
   :members:
   :show-inheritance:
