@@ -150,6 +150,32 @@ abbreviations, &#8216;ace&#8217; and &#8216;dfp&#8217;.</td>
 </tr>
 </tbody>
 </table>
+<dl class="method">
+<dt id="pyf.fluid.rho">
+<code class="descname">rho</code><span class="sig-paren">(</span><em>T=None</em>, <em>P=None</em>, <em>omega=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyf.html#fluid.rho"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyf.fluid.rho" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the density of the fluid in <span class="math">\(\frac{g}{cm^{3}}\)</span></p>
+<p>The function <code class="docutils literal"><span class="pre">fluid.rho()</span></code> returns the density of the fluid by using
+the temperature and pressure of the fluid (and possibly the omega) of
+the fluid and calculating the density according to the tait equation</p>
+<div class="math">
+\[- \frac{1}{V} \frac{dV}{dP} = \frac{A}{V \left( B+P \right)}\]</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>T</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; The temperature in Kelvins (default <span class="math">\(298.15 K\)</span>)</li>
+<li><strong>P</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; The pressure in Pa (default <span class="math">\(101325 Pa\)</span>)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><span class="math">\(\rho\)</span>, the density in <span class="math">\(\frac{g}{cm^{3}}\)</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
