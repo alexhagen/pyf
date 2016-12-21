@@ -12,18 +12,22 @@ hydraulics for his method to get the fluid properties of water.  He gave me an
 excel spreadsheet with a macro and about 15 pages on how to use it.  It
 shouldn't be that hard.
 
-The current code should be possible to use in a way like this:
+The current code should be possible to use like this:
 
 ```Python
 
 >>> import pyf
 >>> dfp = pyf.fluid('decafluoropentane')
->>> dfp.rho() # Get the density at 25 deg C and 1 atm (STP)
+>>> dfp.rho() # Get the density at 25 deg C and 1 atm (STP) in g/cc
 1578.7224589737573
->>> dfp.rho(T=313.15) # Get the density at 40 deg C
+>>> dfp.rho(T=313.15) # Get the density at 40 deg C in g/cc
 1533.2408437717631
->>> dfp.rho(P=202650) # Get the density at 2 atm
+>>> dfp.rho(P=202650) # Get the density at 2 atm in g/cc
 1578.9770785342776
+>>> dfp.sigma() # Get the surface tension at STP in dynes/cm
+14.1
+>>> dfp.c_p() # Get the specific heat at 20 deg C in kJ/kg/deg C
+1.13
 
 ```
 

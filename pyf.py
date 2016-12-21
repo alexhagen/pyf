@@ -213,7 +213,13 @@ class fluid(object):
         p2 = self.p(T,rho_2,omega=self.omega_c);
         c = np.sqrt((p1 - p2)/(rho_1 - rho_2));
         return c;
-    def sigma(self, T):
+
+    def sigma(self, T=None):
+        if T is None:
+            T = 398.15
         return 14.1
-    def c_p(self, T):
+    
+    def c_p(self, T=None):
+        if T is None:
+            T = 393.15
         return 1.13
