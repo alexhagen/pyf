@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to pyf’s documentation! &mdash; pyf 0.0.1a documentation</title>
+    <title>pyf &mdash; pyf 0.0.1a documentation</title>
     
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="pyf 0.0.1a documentation" href="#" />
+    <link rel="top" title="pyf 0.0.1a documentation" href="index.html" />
    
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
@@ -37,10 +37,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-pyf-s-documentation">
-<h1>Welcome to pyf&#8217;s documentation!<a class="headerlink" href="#welcome-to-pyf-s-documentation" title="Permalink to this headline">¶</a></h1>
-</div>
-<div class="section" id="pyf">
+  <div class="section" id="pyf">
 <h1>pyf<a class="headerlink" href="#pyf" title="Permalink to this headline">¶</a></h1>
 <p>Python fluid properties</p>
 <div class="section" id="motivation">
@@ -116,58 +113,7 @@ following lines at the top of each of your python scripts.</p>
 <span class="kn">import</span> <span class="nn">pyf</span>
 </pre></div>
 </div>
-<dl class="class">
-<dt id="pyf.fluid">
-<em class="property">class </em><code class="descclassname">pyf.</code><code class="descname">fluid</code><span class="sig-paren">(</span><em>name=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyf.html#fluid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyf.fluid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
-<p>An object to expose some numerical methods and plotting tools.</p>
-<p>A <code class="docutils literal"><span class="pre">curve</span></code> object takes any two dimensional dataset and its uncertainty
-(both in the <span class="math">\(x\)</span> and <span class="math">\(y\)</span> direction).  Each data set includes
-<span class="math">\(x\)</span> and <span class="math">\(y\)</span> data and uncertainty associated with that, as well
-as a name and a data shape designation (whether this is smooth data or
-binned).</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>x</strong> (<em>list-like</em>) &#8211; The ordinate data of the curve</li>
-<li><strong>u_x</strong> (<em>list-like</em>) &#8211; The uncertainty in the ordinate data of the curve</li>
-<li><strong>y</strong> (<em>list-like</em>) &#8211; The abscissa data of the curve</li>
-<li><strong>u_y</strong> (<em>list-like</em>) &#8211; The uncertainty in the abscissa data of the curve</li>
-<li><strong>name</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The name of the data set, used for plotting, etc.</li>
-<li><strong>data</strong> (<a class="reference external" href="https://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The type of data, whether &#8216;smooth&#8217; or &#8216;binned&#8217;. This
-parameter affects the interpolation (and in turn, many other functions)
-by determining what the value is between data points.  For smooth data,
-linear interpolation is enacted to find values between points, for
-binned data, constant interpolation is used.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">the <code class="docutils literal"><span class="pre">curve</span></code> object.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">curve</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
 </div>
-</div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<p>Contents:</p>
-<div class="toctree-wrapper compound">
-<ul class="simple">
-</ul>
-</div>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span>Search Page</span></a></li>
-</ul>
 </div>
 
 
@@ -176,27 +122,25 @@ binned data, constant interpolation is used.</li>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to pyf&#8217;s documentation!</a></li>
-<li><a class="reference internal" href="#pyf">pyf</a><ul>
+<li><a class="reference internal" href="#">pyf</a><ul>
 <li><a class="reference internal" href="#motivation">Motivation</a></li>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="#">Documentation overview</a><ul>
+  <li><a href="index.html">Documentation overview</a><ul>
   </ul></li>
 </ul>
 </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="_sources/index.txt"
+      <li><a href="_sources/README.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -225,7 +169,7 @@ binned data, constant interpolation is used.</li>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
       
       |
-      <a href="_sources/index.txt"
+      <a href="_sources/README.txt"
           rel="nofollow">Page source</a>
     </div>
 
