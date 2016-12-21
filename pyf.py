@@ -5,27 +5,29 @@ from pym import func as ahm
 from pyg import twod as ahp
 
 class fluid(object):
-    r""" An object to expose some numerical methods and plotting tools.
+    r""" An object with built in fluid properties to be referenced
 
-    A ``curve`` object takes any two dimensional dataset and its uncertainty
-    (both in the :math:`x` and :math:`y` direction).  Each data set includes
-    :math:`x` and :math:`y` data and uncertainty associated with that, as well
-    as a name and a data shape designation (whether this is smooth data or
-    binned).
+    A ``fluid`` object takes a name of a fluid and will then allow the user to
+    access fluid properties in an object oriented way.  Currently, the object
+    supports acetone and decafluoropentane. The fluid properties are then
+    referenced by their greek lettering, although this may change later.  Units
+    here are especially hard, because there are so many (especially for
+    pressure).  In general, I will include docstrings listing what type of units
+    are needed, but in the future, I hope to make a feature that allows for
+    passing in of whatever units are needed.
 
-    :param list-like x: The ordinate data of the curve
-    :param list-like u_x: The uncertainty in the ordinate data of the curve
-    :param list-like y: The abscissa data of the curve
-    :param list-like u_y: The uncertainty in the abscissa data of the curve
-    :param str name: The name of the data set, used for plotting, etc.
-    :param str data: The type of data, whether 'smooth' or 'binned'. This
-        parameter affects the interpolation (and in turn, many other functions)
-        by determining what the value is between data points.  For smooth data,
-        linear interpolation is enacted to find values between points, for
-        binned data, constant interpolation is used.
-    :return: the ``curve`` object.
-    :rtype: curve
+    .. todo::
+
+        Create a module that allows for passing in of a string and conversion to
+        proper units.
+
+    :param str fluid: The fluid for which header information will be defined.
+        This currently only supports 'acetone', 'decafluoropentane', and their
+        abbreviations, 'ace' and 'dfp'.
+    :return: the ``fluid`` object
+    :rtype: ``pyf.fluid``
     """
+
     # a limit of error in iteration to find pressure
     epsilon_p = 1.0E-1
     # a limit of error in iteration to find temperature
@@ -226,8 +228,6 @@ class fluid(object):
             epsilon = Pi1 - Pi;
             Pi = Pi1;
         return Pi1;
-
-
     def c(self,T,P):
         rho = self.rho(T,P,omega=self.omega_c);
         rho_1 = rho - 0.001;
@@ -237,12 +237,10 @@ class fluid(object):
         c = np.sqrt((p1 - p2)/(rho_1 - rho_2));
         return c;
 
-
     def sigma(self, T=None):
         if T is None:
             T = 398.15
         return 14.1
-
 
     def c_p(self, T=None):
         if T is None:
