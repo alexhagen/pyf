@@ -5,6 +5,9 @@
 
 .. include:: README.rst
 
+Class Documentation
+===================
+
 .. autoclass:: pyf.fluid
   :members:
   :show-inheritance:
