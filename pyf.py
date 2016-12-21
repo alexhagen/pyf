@@ -5,6 +5,27 @@ from pym import func as ahm
 from pyg import twod as ahp
 
 class fluid(object):
+    r""" An object to expose some numerical methods and plotting tools.
+
+    A ``curve`` object takes any two dimensional dataset and its uncertainty
+    (both in the :math:`x` and :math:`y` direction).  Each data set includes
+    :math:`x` and :math:`y` data and uncertainty associated with that, as well
+    as a name and a data shape designation (whether this is smooth data or
+    binned).
+
+    :param list-like x: The ordinate data of the curve
+    :param list-like u_x: The uncertainty in the ordinate data of the curve
+    :param list-like y: The abscissa data of the curve
+    :param list-like u_y: The uncertainty in the abscissa data of the curve
+    :param str name: The name of the data set, used for plotting, etc.
+    :param str data: The type of data, whether 'smooth' or 'binned'. This
+        parameter affects the interpolation (and in turn, many other functions)
+        by determining what the value is between data points.  For smooth data,
+        linear interpolation is enacted to find values between points, for
+        binned data, constant interpolation is used.
+    :return: the ``curve`` object.
+    :rtype: curve
+    """
     # a limit of error in iteration to find pressure
     epsilon_p = 1.0E-1
     # a limit of error in iteration to find temperature
@@ -205,6 +226,8 @@ class fluid(object):
             epsilon = Pi1 - Pi;
             Pi = Pi1;
         return Pi1;
+
+
     def c(self,T,P):
         rho = self.rho(T,P,omega=self.omega_c);
         rho_1 = rho - 0.001;
@@ -214,11 +237,13 @@ class fluid(object):
         c = np.sqrt((p1 - p2)/(rho_1 - rho_2));
         return c;
 
+
     def sigma(self, T=None):
         if T is None:
             T = 398.15
         return 14.1
-    
+
+
     def c_p(self, T=None):
         if T is None:
             T = 393.15
