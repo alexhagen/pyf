@@ -9,6 +9,7 @@ docs: FORCE
 	cd ~/pages/pyf; \
 	touch .nojekyll; \
 	git add *; \
+	git add .nojekyll; \
 	git commit -am "$(shell git log -1 --pretty=%B | tr -d '\n')"; \
 	git push origin gh-pages; \
 	cd ~/code/pyf
