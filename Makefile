@@ -1,6 +1,7 @@
 all: docs
 
 docs: FORCE
+	pandoc README.md -o docs/README.rst; \
 	cd ~/pages/pyf/; \
 	git rm -r *; \
 	cd ~/code/pyf/docs/; \

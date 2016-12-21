@@ -6,7 +6,7 @@
 Welcome to pyf's documentation!
 ===============================
 
-.. include:: ../README.md
+.. include:: README.rst
 
 .. autoclass:: pyf.fluid
   :members:
