@@ -283,6 +283,7 @@
             <span class="n">epsilon</span> <span class="o">=</span> <span class="n">Pi1</span> <span class="o">-</span> <span class="n">Pi</span><span class="p">;</span>
             <span class="n">Pi</span> <span class="o">=</span> <span class="n">Pi1</span><span class="p">;</span>
         <span class="k">return</span> <span class="n">Pi1</span><span class="p">;</span>
+
     <span class="k">def</span> <span class="nf">c</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">):</span>
         <span class="n">rho</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="n">omega</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">omega_c</span><span class="p">);</span>
         <span class="n">rho_1</span> <span class="o">=</span> <span class="n">rho</span> <span class="o">-</span> <span class="mf">0.001</span><span class="p">;</span>
@@ -294,13 +295,23 @@
 
     <span class="k">def</span> <span class="nf">sigma</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">T</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">T</span> <span class="o">=</span> <span class="mf">398.15</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="mf">298.15</span>
         <span class="k">return</span> <span class="mf">14.1</span>
 
     <span class="k">def</span> <span class="nf">c_p</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">T</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
-            <span class="n">T</span> <span class="o">=</span> <span class="mf">393.15</span>
-        <span class="k">return</span> <span class="mf">1.13</span></div>
+            <span class="n">T</span> <span class="o">=</span> <span class="mf">298.15</span>
+        <span class="k">return</span> <span class="mf">1.13</span>
+
+<div class="viewcode-block" id="fluid.p_v"><a class="viewcode-back" href="../index.html#pyf.fluid.p_v">[docs]</a>    <span class="k">def</span> <span class="nf">p_v</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; from Loras in Journal of Chemical Engineering Data, 2001</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">T</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="mf">298.15</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="mf">6.43876</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="mf">1242.510</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="mf">46.568</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">A</span> <span class="o">-</span> <span class="p">(</span><span class="n">B</span> <span class="o">/</span> <span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="n">C</span><span class="p">)))</span></div></div>
 </pre></div>
 
           </div>
