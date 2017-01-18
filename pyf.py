@@ -242,6 +242,7 @@ class fluid(object):
             epsilon = Pi1 - Pi;
             Pi = Pi1;
         return Pi1;
+
     def c(self,T,P):
         rho = self.rho(T,P,omega=self.omega_c);
         rho_1 = rho - 0.001;
@@ -253,10 +254,20 @@ class fluid(object):
 
     def sigma(self, T=None):
         if T is None:
-            T = 398.15
+            T = 298.15
         return 14.1
 
     def c_p(self, T=None):
         if T is None:
-            T = 393.15
+            T = 298.15
         return 1.13
+
+    def p_v(self, T=None):
+        """ from Loras in Journal of Chemical Engineering Data, 2001
+        """
+        if T is None:
+            T = 298.15
+        A = 6.43876
+        B = 1242.510
+        C = 46.568
+        return np.power(10.0, A - (B / (T - C)))
