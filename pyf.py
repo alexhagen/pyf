@@ -208,7 +208,8 @@ class fluid(object):
         V = V_s * (1.0 - C * np.log((B + P)/(B + P_s)));
         # calculate the density from that molar volume and return it
         rho = self.M/np.array(V);
-        return rho;
+        return rho
+        
     def p(self,T,rho,omega=None):
         if omega is None:
             omega = self.omega_rho;
@@ -261,6 +262,18 @@ class fluid(object):
         if T is None:
             T = 298.15
         return 1.13
+
+    def c_v(self, T=None):
+        if T is None:
+            T = 298.15
+        alpha = (1./V) * (delVdelT_P)
+        beta_T = - (1./V) * (delVdelP_T)
+        c_v = T * alpha**2 / (rho * beta_T)
+        return c_v
+
+    def gamma(self, T=None):
+        gamma = self.c_p(T=T, p=p) / self.c_v(T=T, p=p)
+        return
 
     def p_v(self, T=None):
         """ from Loras in Journal of Chemical Engineering Data, 2001
