@@ -209,7 +209,7 @@ class fluid(object):
         # calculate the density from that molar volume and return it
         rho = self.M/np.array(V);
         return rho
-        
+
     def p(self,T,rho,omega=None):
         if omega is None:
             omega = self.omega_rho;
@@ -253,10 +253,13 @@ class fluid(object):
         c = np.sqrt((p1 - p2)/(rho_1 - rho_2));
         return c;
 
-    def sigma(self, T=None):
+    def sigma(self, T=None, experimental=False):
         if T is None:
             T = 298.15
-        return 14.1
+        if experimental:
+            return 30.0 * (1.0 - np.power((T / 508.20), 1.1240))
+        else:
+            return 14.1
 
     def c_p(self, T=None):
         if T is None:
