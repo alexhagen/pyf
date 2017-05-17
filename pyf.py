@@ -244,12 +244,16 @@ class fluid(object):
             Pi = Pi1;
         return Pi1;
 
-    def c(self,T,P):
-        rho = self.rho(T,P,omega=self.omega_c);
+    def c(self, T=None, P=None):
+        if T is None:
+            T = 298.15
+        if P is None:
+            P = 101325.
+        rho = self.rho(T, P, omega=self.omega_rho);
         rho_1 = rho - 0.001;
         rho_2 = rho + 0.001;
-        p1 = self.p(T,rho_1,omega=self.omega_c);
-        p2 = self.p(T,rho_2,omega=self.omega_c);
+        p1 = self.p(T, rho_1, omega=self.omega_rho);
+        p2 = self.p(T, rho_2, omega=self.omega_rho);
         c = np.sqrt((p1 - p2)/(rho_1 - rho_2));
         return c;
 
