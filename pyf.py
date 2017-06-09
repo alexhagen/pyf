@@ -207,7 +207,7 @@ class fluid(object):
         # finally use the tait equation to determine the molar volume
         V = V_s * (1.0 - C * np.log((B + P)/(B + P_s)));
         # calculate the density from that molar volume and return it
-        rho = self.M/np.array(V);
+        rho = self.M / np.array(V);
         return rho
 
     def p(self,T,rho,omega=None):
@@ -254,8 +254,32 @@ class fluid(object):
         rho_2 = rho + 0.001;
         p1 = self.p(T, rho_1, omega=self.omega_rho);
         p2 = self.p(T, rho_2, omega=self.omega_rho);
-        c = np.sqrt((p1 - p2)/(rho_1 - rho_2));
+        c = np.sqrt((p2 - p1)/(rho_2 - rho_1));
         return c;
+
+    def V(self, T=None, P=None, omega=None):
+        if T is None:
+            T = 298.15
+        if P is None:
+            P = 101325.
+        if omega is None:
+            omega = self.omega_rho;
+        # determine the reduced temperature from common definitions
+        T_r = np.divide(T,self.T_c);
+        # determine the constats using tait's definitions
+        (B,C) = self.tait_const(T_r,omega);
+        # determine the characteristic volume from hankinson-thomson's
+        # correlation
+        V_o = self.hankinson_thomson(omega);
+        # determine the saturation volume from tait's definition
+        V_s = self.tait_vs(T_r,V_o,omega);
+        T_b = self.T_b_curve.at(P);
+        T_br = T_b/self.T_c;
+        # determine the saturation pressure from the riedel equation
+        P_s = self.riedel(T_r,T_br);
+        # finally use the tait equation to determine the molar volume
+        V = V_s * (1.0 - C * np.log((B + P)/(B + P_s)));
+        return V
 
     def sigma(self, T=None, experimental=False):
         if T is None:
@@ -268,19 +292,35 @@ class fluid(object):
     def c_p(self, T=None):
         if T is None:
             T = 298.15
-        return 1.13
+        return 13.0
 
-    def c_v(self, T=None):
+    def c_v(self, T=None, P=None):
         if T is None:
             T = 298.15
+        if P is None:
+            P = 101325.
+        V = 1.0 / self.rho(T, P, omega=self.omega_rho)
+        rho = self.rho(T, P, omega=self.omega_rho)
+        dT = 0.1
+        V1 = 1.0 / self.rho(T - dT, P, omega=self.omega_rho)
+        V2 = 1.0 / self.rho(T + dT, P, omega=self.omega_rho)
+        delVdelT_P = (V2 - V1) / (2.0 * dT)
+        dp = 1.0
+        V3 = 1.0 / self.rho(T, P - dp)
+        V4 = 1.0 / self.rho(T, P + dp)
+        delVdelP_T = (V4 - V3) / (2.0 * dp)
         alpha = (1./V) * (delVdelT_P)
         beta_T = - (1./V) * (delVdelP_T)
-        c_v = T * alpha**2 / (rho * beta_T)
+        c_v = self.c_p(T) - alpha**2 / (rho * beta_T)
         return c_v
 
-    def gamma(self, T=None):
-        gamma = self.c_p(T=T, p=p) / self.c_v(T=T, p=p)
-        return
+    def gamma(self, T=None, P=None):
+        if T is None:
+            T = 298.15
+        if P is None:
+            P = 101325.
+        gamma = self.c_p(T=T) / self.c_v(T=T, P=P)
+        return gamma
 
     def p_v(self, T=None):
         """ from Loras in Journal of Chemical Engineering Data, 2001
