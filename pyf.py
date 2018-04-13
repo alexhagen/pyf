@@ -4,6 +4,13 @@ import sys
 from pym import func as ahm
 from pyg import twod as ahp
 
+def unit(unit):
+    def wrapper(func):
+        result = func
+        func.__unit__ = unit
+        return func
+    return wrapper
+
 class fluid(object):
     r""" An object with built in fluid properties to be referenced
 
@@ -169,6 +176,7 @@ class fluid(object):
             (B_ant/T_r) + C_ant*np.log(T_r) + D_ant*T_r**6);
         return P_s;
 
+    @unit('g/cm^3')
     def rho(self, T=None, P=None, omega=None):
         r""" Returns the density of the fluid in :math:`\frac{g}{cm^{3}}`
 
@@ -210,6 +218,7 @@ class fluid(object):
         rho = self.M / np.array(V);
         return rho
 
+    @unit('Pa')
     def p(self,T,rho,omega=None):
         if omega is None:
             omega = self.omega_rho;
@@ -244,6 +253,7 @@ class fluid(object):
             Pi = Pi1;
         return Pi1;
 
+    @unit('m/s')
     def c(self, T=None, P=None):
         if T is None:
             T = 298.15
