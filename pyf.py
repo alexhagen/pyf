@@ -120,6 +120,27 @@ class fluid(object):
             # because we have pure liquid in equilibrium with pure vapor,
             # the surface tension will not depend on pressure (always at vapor
             # pressure)
+        if name.lower() in ['water', 'h2o']:
+            self.P_c = 22060.  # in kPa
+            self.T_c = 647.096
+            A = 5.40221
+            B = 1838.675
+            C = -31.737
+            T_b = np.linspace(273., 303., 1000)  # in K
+            P_b = np.power(10., A - (B / (T_b - C)))  # in kPa
+            self.T_b_curve = ahm.curve(np.array(P_b) * 1.0E3, np.array(T_b))
+            self.M = 18.01528 / 1000.0
+            self.omega_rho = 0.62
+            self.T_b = np.array(T_b)
+            self.P_b = np.array(P_b) * 1.0E3
+            # from datasheet, dfp has specific heat of 1.13 kJ/kgC at 20C
+            # heat capacity has form c_p = A + B* T + C * T^2 + D * T^3
+            # then return cv according to C_p - C_v = delp/delT@V,n * delV/delT@p,n
+
+            # surface tension has form sigma = A * (1 - T/T_c) ^n
+            # because we have pure liquid in equilibrium with pure vapor,
+            # the surface tension will not depend on pressure (always at vapor
+            # pressure)
 
 
     def tait_const(self, T_r, omega):
